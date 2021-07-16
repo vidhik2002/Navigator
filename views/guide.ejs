@@ -5,14 +5,34 @@
         <link href="/public/css/maze.css" rel="stylesheet" type="text/css">
     </head>
     <body>
+        <% getBorder = function(x,y){ 
+            let str = ""         
+            let mz = maze.rows[y][x]
+            if ((mz.left)){
+                str += "left "
+            }
+            if ((mz.right)){
+            str += "right "
+            }
+            if (mz.up){
+            str += "top "
+            }
+            if (mz.down){
+            str += "bottom "
+            }
+
+            return str
+        } %> 
+
         <h1>guide view</h1>
-        <!-- <h1> <%= JSON.stringify(maze) %> </h1> -->
-        <% for (let i = 0; i < maze.rows.length; i++) { %>
-            <% for (let j=0; j < maze.rows[i].length; j++) { %>
-                <div class="box">
-                    
-                </div>
+        <div style = "left: calc(50vw - <%= maze.rows[0].length*25 %>px); position: relative">
+            <% for (let i = 0; i < maze.rows.length; i++) { %>
+                <% for (let j=0; j < maze.rows[i].length; j++) { %>
+                    <div class="box <%= getBorder(j,i) %>" style = "left: <%= j*50 %>px; top: <%= i*50 %>px;" >
+                        
+                    </div>
+                <% } %>
             <% } %>
-        <% } %>
+        </div>
     </body>
 </html>

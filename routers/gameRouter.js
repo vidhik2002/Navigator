@@ -13,8 +13,11 @@ router.get("/", (req, res) => {
     width: x,
     height: y
   }
-  const maze = generator(options);
-  res.redirect("/game/guide?maze="+JSON.stringify(maze.toJSON()))
+  const maze = generator(options).toJSON();
+  maze.rows[0][x-1].right = false
+  maze.rows[y-1][0].left = false
+  console.log(maze);
+  res.redirect("/game/guide?maze="+JSON.stringify(maze))
 });
 
 router.get("/guide", (req, res) => {
