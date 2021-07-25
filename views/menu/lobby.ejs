@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Guide view</title>
+    <link href="/public/css/lobby.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="lobby-container">
+        <h1 class="lobby-title">Lobby</h1>
+        <h1 class="lobby-room"><%= roomid %></h1>
+        <div class="lobby-boxes">
+            <a href="#" onclick="selectRole(0)"><div class="lobby-box-a">Guide</div></a>
+            <a href="#" onclick="selectRole(1)"><div class="lobby-box-a">Blindfold</div></a>
+            <a href="#" onclick="selectRole(2)"><div class="lobby-box-b">Guide</div></a>
+            <a href="#" onclick="selectRole(3)"><div class="lobby-box-b">Blindfold</div></a>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/lobbyClient.js"></script>
+</body>
+
+</html>

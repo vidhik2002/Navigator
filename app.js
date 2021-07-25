@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-// const mongoose = require('mongoose');
+const socket = require('socket.io-client')
+const mongoose = require('mongoose');
 const path = require('path');
 require('dotenv').config();
 
@@ -35,6 +36,22 @@ app.get('/', (req, res) => {
     res.render('index');
 })
 
+mongoose.connect(
+    process.env.DB_CONNECTION,
+    {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useUnifiedTopology: true,
+    },
+);
+
+mongoose.connection
+    .once('open', () => {
+        console.log('Connection to mongoDB established');
+    })
+    .on('error', (err) => {
+        console.log('Error connecting to mongoDB:', err);
+    });
 app.use((req, res, next) => {
 	const error = new Error("Request not found");
 	error.status = 404;
