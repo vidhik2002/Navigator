@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Guide view</title>
+    <link href="/public/css/join.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <div class="join-container">
+        <h1 class="join-title">Enter room code</h1>
+        <input class="join-input" placeholder="Enter Code">
+        <button class="join-submit">Submit</button>
+    </div>
+    <script type="text/javascript">
+        document.getElementsByClassName("join-submit").onclick = function () {
+            code = document.getElementsByClassName("join-input").item
+            location.href = "/game/lobby?roomid="+code;
+        };
+    </script>
+</body>
+
+</html>

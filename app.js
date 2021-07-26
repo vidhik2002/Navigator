@@ -1,8 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const http = require("http");
 const socket = require('socket.io-client')
 const mongoose = require('mongoose');
 const path = require('path');
+const socketio = require("socket.io");
 require('dotenv').config();
 
 const mazeRouter = require('./routers/mazeRouter');
@@ -11,11 +13,15 @@ const gameRouter = require("./routers/gameRouter");
 const PORT = process.env.PORT || 3000
 
 const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
+
 // mongoose.connect(process.env.MONGO, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 // mongoose.Promise = global.Promise;
 
 // Setting template Engine
 app.set('view engine', 'ejs');
+app.set("socketio", io);
 app.use('/public', express.static(path.join(__dirname,'public')))
 
 // parse application/x-www-form-urlencoded aka your HTML <form> tag stuff

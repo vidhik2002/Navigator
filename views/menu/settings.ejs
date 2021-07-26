@@ -10,11 +10,21 @@
 
     <div class="setting-container">
         <h1 class="setting-title">Input Game Settings</h1>
-        <input class="setting-input" placeholder="Enter Width">
-        <input class="setting-input" placeholder="Enter Height">
-        <input class="setting-input" placeholder="Enter Time">
-        <button class="setting-submit">Submit</button>
+        <input class="setting-input" id="width" placeholder="Enter Width">
+        <input class="setting-input" id="height" placeholder="Enter Height">
+        <input class="setting-input" id="time" placeholder="Enter Time">
+        <button class="setting-submit" id="setting-submit">Submit</button>
     </div>
+    
+    <script type="text/javascript">
+        document.getElementById("setting-submit").onclick = function () {
+            console.log("addi")
+            x = document.getElementById("width").value
+            y = document.getElementById("height").value
+            time = document.getElementById("time").value
+            location.href = `/game/create?x=${x}&y=${y}&time=${time}`;
+        };
+    </script>
 </body>
 
 </html>

@@ -42,9 +42,21 @@ router.get("/setting", (req, res) => {
   res.render("./menu/settings.ejs");
 });
 
-router.get("/lobby", (req, res) => {
+router.get("/join", (req, res) => {
+  res.render("./menu/join.ejs");
+  
+});
+
+router.get("/lobby", async (req, res) => {
   const roomid = req.query.roomid;
-  res.render("./menu/lobby.ejs", {roomid: roomid});
+  console.log(roomid)
+  const room = await Room.findOne({roomid: roomid})
+  console.log(room)
+  if(room){
+    res.render("./menu/lobby.ejs", {roomid: roomid});
+  }else{
+    res.json("roomid doesnot exist")
+  }
 });
 
 router.get("/guide", (req, res) => {
