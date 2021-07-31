@@ -9,19 +9,21 @@ require('dotenv').config();
 
 const mazeRouter = require('./routers/mazeRouter');
 const gameRouter = require("./routers/gameRouter");
+const socketHandler = require("./routers/socketHandler");
 
 const PORT = process.env.PORT || 3000
 
 const app = express();
 const server = http.createServer(app);
-const io = socketio(server);
+socketHandler(server);
+// const io = socketio(server);
 
 // mongoose.connect(process.env.MONGO, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 // mongoose.Promise = global.Promise;
 
 // Setting template Engine
 app.set('view engine', 'ejs');
-app.set("socketio", io);
+// app.set("socketio", io);
 app.use('/public', express.static(path.join(__dirname,'public')))
 
 // parse application/x-www-form-urlencoded aka your HTML <form> tag stuff
@@ -73,6 +75,6 @@ app.use((error, req, res, next) => {
 	})
 })
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
 })

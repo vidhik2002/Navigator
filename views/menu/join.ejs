@@ -10,12 +10,12 @@
 
     <div class="join-container">
         <h1 class="join-title">Enter room code</h1>
-        <input class="join-input" placeholder="Enter Code">
-        <button class="join-submit">Submit</button>
+        <input class="join-input" id="join-input" placeholder="Enter Code">
+        <button class="join-submit" id="join-submit">Submit</button>
     </div>
     <script type="text/javascript">
-        document.getElementsByClassName("join-submit").onclick = function () {
-            code = document.getElementsByClassName("join-input").item
+        document.getElementById("join-submit").onclick = function () {
+            code = document.getElementById("join-input").value
             location.href = "/game/lobby?roomid="+code;
         };
     </script>
