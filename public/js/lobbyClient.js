@@ -13,12 +13,13 @@ socket.on("new user", (user) => {
   newplayer.id = user;
   newplayer.innerHTML = user;
   document.getElementById("player-list").appendChild(newplayer)
-  
+
 })
+
 socket.on("user list", (users) => {
-  console.log(Array.from(users));
-  for(let user of Array.from(users)){
-    console.log(user)
+  // console.log(Array.from(users));
+  for (let user of Array.from(users)) {
+    // console.log(user)
     var newplayer = document.createElement("div");
     newplayer.id = user;
     newplayer.innerHTML = user;
@@ -26,4 +27,8 @@ socket.on("user list", (users) => {
 
   }
 
+})
+
+socket.on("user disconnecting", (user) => {
+  document.getElementById(user).remove()
 })

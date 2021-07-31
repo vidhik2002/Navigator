@@ -14,6 +14,13 @@ router.get("/create", async (req, res) => {
   const x = parseInt(req.query.x);
   const y = parseInt(req.query.y);
   const time = parseInt(req.query.time);
+
+  if (!(x && y && time)){
+    return res.json({
+      "msg": "douche"
+    })
+  }
+
   const roomid = uniqid();
   const options = {
     width: x,
