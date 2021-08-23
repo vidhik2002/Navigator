@@ -58,7 +58,7 @@ router.get("/create", async (req, res) => {
     const roomid = req.query.roomid;
     const room = await Room.findOne({ roomid: roomid });
     if (room) {
-      res.render("./menu/lobby.ejs", { roomid: roomid });
+      res.render("./menu/lobby.ejs", { room: room });
     } else {
       res.json("roomid doesnot exist");
     }
@@ -76,5 +76,31 @@ router.get("/blindfold", (req, res) => {
     msg: "u are accessing blindfold route",
   });
 });
+
+router.get("/vacancy", async (req,res) => {
+  const { roomid } = req.query;
+  const { userid } = req.query;
+  const { role } = req.query;
+  const room = await Room.findOne({ roomid: roomid });
+    if(room[role] == ""){
+      room[role] = userid
+      room.save()
+      return res.json({
+        msg: "Selected the role",
+      });
+    }
+    if(room[role] !== userid){
+      return res.json({
+        "msg": "the role is already taken" 
+      })
+      }
+    if(room[role] == userid){
+      room[role] = ""
+      room.save()
+      return res.json({
+        "msg":"Deselected the role"
+      })
+      }
+})
 
 module.exports = router;

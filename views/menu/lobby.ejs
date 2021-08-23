@@ -7,9 +7,11 @@
 </head>
 
 <body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/public/js/lobbyClient.js"></script>
     <div class="lobby-container">
         <h1 class="lobby-title">Lobby</h1>
-        <h1 class="lobby-room"><%= roomid %></h1>
+        <h1 class="lobby-room"><%= room.roomid %></h1>
         <div class="lobby-boxes">
             <a href="#" onclick="selectRole(0)"><div class="lobby-box-a">Guide</div></a>
             <a href="#" onclick="selectRole(1)"><div class="lobby-box-a">Blindfold</div></a>
@@ -25,8 +27,7 @@
         <div>sourish</div>
         <div>vidhi<div> -->
     </div>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/public/js/lobbyClient.js"></script>
+    
 </body>
 
 </html>

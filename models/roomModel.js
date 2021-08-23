@@ -8,15 +8,19 @@ const RoomSchema = new mongoose.Schema({
   },
   Blindfolda: {
     type: String, //socket id
+    default: "",
   },
   Guidea: {
     type: String,
+    default: "",
   },
   Blindfoldb: {
     type: String,
+    default: "",
   },
   Guideb: {
     type: String,
+    default: "",
   },
   maze: {
     type: String,

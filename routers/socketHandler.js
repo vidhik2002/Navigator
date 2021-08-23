@@ -16,13 +16,20 @@ module.exports = (app) => {
             lobbyHandler
                 .to(socket.id)
                 .emit("user list", users); 
-        });
-        
+
+        //Client chooses from 4 options
+    
         // Client disconnects from lobby
         socket.on("disconnect", () => {
             console.log(socket.id)
-            socket.broadcast.emit("user disconnecting", socket.id)
+
+            socket.broadcast.emit(
+              "user disconnecting",
+              socket.id
+            );
+            console.log(socket.rooms)
         });
     });
     return io;
+})
 };
