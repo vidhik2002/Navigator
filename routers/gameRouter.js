@@ -58,7 +58,7 @@ router.get("/create", async (req, res) => {
     const roomid = req.query.roomid;
     const room = await Room.findOne({ roomid: roomid });
     if (room) {
-      res.render("./menu/lobby.ejs", { room: room });
+      res.render("./menu/lobby.ejs", { room: room});
     } else {
       res.json("roomid doesnot exist");
     }

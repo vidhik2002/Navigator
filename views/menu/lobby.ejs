@@ -13,10 +13,10 @@
         <h1 class="lobby-title">Lobby</h1>
         <h1 class="lobby-room"><%= room.roomid %></h1>
         <div class="lobby-boxes">
-            <a href="#" onclick="selectRole(0)"><div class="lobby-box-a">Guide</div></a>
-            <a href="#" onclick="selectRole(1)"><div class="lobby-box-a">Blindfold</div></a>
-            <a href="#" onclick="selectRole(2)"><div class="lobby-box-b">Guide</div></a>
-            <a href="#" onclick="selectRole(3)"><div class="lobby-box-b">Blindfold</div></a>
+            <a href="#" onclick="selectRole(0)"><div class="lobby-box-a <%= room.Guidea!='' ? 'green' : '' %>">Guide</div></a>
+            <a href="#" onclick="selectRole(1)"><div class="lobby-box-a <%= room.Blindfolda!='' ? 'green' : '' %>">Blindfold</div></a>
+            <a href="#" onclick="selectRole(2)"><div class="lobby-box-b <%= room.Guideb!='' ? 'green' : '' %>">Guide</div></a>
+            <a href="#" onclick="selectRole(3)"><div class="lobby-box-b <%= room.Blindfoldb!='' ? 'green' : '' %>">Blindfold</div></a>
         </div>
     </div>
     <div class="player-heading">Player List</div>

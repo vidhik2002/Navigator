@@ -29,6 +29,10 @@ module.exports = (app) => {
             );
             console.log(socket.rooms)
         });
+
+        socket.on("togglerole", (roleinfo) => {
+            socket.broadcast.to(roleinfo[0]).emit("togglerole", roleinfo[1])
+        });
     });
     return io;
 })

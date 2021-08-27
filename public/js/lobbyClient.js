@@ -25,33 +25,49 @@ socket.on("user list", (users) => {
   }
 });
 
-function selectRole(role) {
+function selectRole(roleno) {
   let url = new URL(window.location);
   let roomid = url.searchParams.get("roomid");
-  switch (role) {
+  switch (roleno) {
     case 0:
-      role = "Blindfolda";
-      break;
-    case 1:
       role = "Guidea";
       break;
+    case 1:
+      role = "Blindfolda";
+      break;
     case 2:
-      role = "Blindfoldb";
+      role = "Guideb";
       break;
     case 3:
-      role = "Guideb";
+      role = "Blindfoldb";
       break;
     default:
       return;
   }
-  const userAction = async (roomid, userid, role) => {
-    const response = await fetch(`/game/vacancy?roomid=${roomid}&userid=${userid}&role=${role}`);
-    const myJson = await response.json();
-    console.log(myJson)
-  };
-  userAction(roomid,socket.id,role)
+
+  let button = document.querySelectorAll(`div.lobby-boxes > a > div`).item(roleno)
+  console.log(button)
+  
+  if (button.classList.contains('green')){
+    console.log("Already taken: frontend")
+  } else {
+    button.classList.toggle('blue')
+    roleChange(roomid,socket.id,role)
+    socket.emit("togglerole", [roomid, roleno])
+  }
 }
+
+const roleChange = async (roomid, userid, role) => {
+  const response = await fetch(`/game/vacancy?roomid=${roomid}&userid=${userid}&role=${role}`);
+  const myJson = await response.json();
+  console.log(myJson)
+};
 
 socket.on("user disconnecting", (user) => {
   document.getElementById(user).remove();
+});
+
+socket.on("togglerole", (role) => {
+  let button = document.querySelectorAll(`div.lobby-boxes > a > div`).item(role)
+  button.classList.toggle('green')
 });
